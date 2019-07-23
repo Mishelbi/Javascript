@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Battleground</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <script>
+        var num = 0; var heroPlay = 0; var trollPlay = 0;
+        var heroPts = 100; var trollPts = 100;
+    function playAgain()
+    {
+        setup();
+    }
+    function setup()
+    {
+        var num = 0; var heroPlay = 0; var trollPlay = 0;
+        var heroPts = 100; var trollPts = 100;
+        var rocks = "magic rocks"; var sword = "the sword";
+        var arrow = "bow and arrow";
+        var heroChoice = " "; var trollChoice = " ";
+            
+            document.getElementById("trollPts").innerHTML = (trollPts);
+            document.getElementById("heroPts").innerHTML = (heroPts);
+            document.getElementById("playerWeapon").innerHTML = ("Your weapon: ");
+            document.getElementById("trollWeapon").innerHTML = ("The troll's weapon: ");
+            document.getElementById("winner").innerHTML = ("&nbsp;");
+    }
+    function getWeapon(num)
+        {
+            heroPlay = num;
+            var weapon;
+            if (heroPlay === 1)
+                weapon = "the Magic Rocks";
+            else if (heroPlay === 2)
+                weapon = "the Sword";
+            else if (heroPlay === 3)
+                weapon = "the Bow and Arrows"
+            else if (heroPlay === 4)
+                weapon = "to Quit";
+            alert("You chose "+weapon);
+            battleIt(heroPlay);
+        }
+    function battleIt(heroPlay)
+        {
+            
+            var rocks = "magic rocks"; var sword = "the sword";
+            var arrow = "bow and arrow";
+            var heroChoice = " "; var trollChoice = " ";
+            
+            document.getElementById("trollPts").innerHTML = (trollPts);
+            document.getElementById("heroPts").innerHTML = (heroPts);
+            document.getElementById("playerWeapon").innerHTML = ("Your weapon: ");
+            document.getElementById("trollWeapon").innerHTML = ("The troll's weapon: ");
+            document.getElementById("winner").innerHTML = (" ");
+            
+            
+                    
+                    if (heroPlay == 4) 
+                    {
+                        whoWon();                        
+                    }
+                    // get troll's weapon
+                    trollPlay = Math.floor(Math.random() * 3 + 1);
+                    // assign weapon to player and troll
+                    if (trollPlay == 1)
+                        trollChoice = rocks;
+                    if (trollPlay == 2)
+                        trollChoice = sword;
+                    if (trollPlay == 3)
+                        trollChoice = arrow;
+                    if (heroPlay == 1)
+                        heroChoice = rocks;
+                    if (heroPlay == 2)
+                        heroChoice = sword;
+                    if (heroPlay == 3)
+                        heroChoice = arrow;
+                    
+                    // display weapon selections
+                    document.getElementById("playerWeapon").innerHTML = ("Your weapon: " +
+                                                                         heroChoice);
+                    document.getElementById("trollWeapon").innerHTML = ("The troll's weapon: " +
+                                                                       trollChoice);
+                    
+                    //find the winner
+                    if (((trollPlay == 1) && (heroPlay == 3)) || ((trollPlay == 2) 
+                        && (heroPlay == 1)) || ((trollPlay == 3) && (heroPlay == 2)))
+                        {
+                            document.getElementById("winner").innerHTML = 
+                                ("<img height='150px' src='../images/troll.jpg' />");
+                            trollPts = trollPts +10;
+                            heroPts = heroPts -10;
+                            document.getElementById("trollPts").innerHTML = (trollPts);
+                            document.getElementById("heroPts").innerHTML = (heroPts);
+                        }
+                    if (((heroPlay == 1) && (trollPlay == 3)) || ((heroPlay ==2)
+                        && (trollPlay == 1)) || ((heroPlay == 3) && (trollPlay == 2)))
+                        {
+                            document.getElementById("winner").innerHTML = 
+                                ("<img src='../images/wizard.jpg' />");
+                            trollPts = trollPts -10;
+                            heroPts = heroPts +10;
+                            document.getElementById("trollPts").innerHTML = (trollPts);
+                            document.getElementById("heroPts").innerHTML = (heroPts);
+                        }
+                    if (((heroPlay == 1)&&(trollPlay == 1)) || ((heroPlay == 2)&&(trollPlay ==2)) || 
+                        ((heroPlay == 3)&& (trollPlay == 3)))
+                        {
+                            document.getElementById("winner").innerHTML = ("This round is a tie." +
+                                                                          "New weapons must be chosen...");
+                        }
+                    whoWon();
+                }
+                function whoWon()
+                {
+                    // display the final winner
+                    if (heroPlay == 4)
+                        document.getElementById("winner").innerHTML = ("It's true: when you run, you live " +
+                                                                    "to fight another day. See you again soon!");
+                    if (trollPts == 130)
+                        document.getElementById("winner").innerHTML = ("The battle has been fought valiently but " +
+                                                                    "but the troll has beaten you. Go home and " +
+                                                                    "nurse your wounds.");
+                    if (heroPts == 130)
+                        document.getElementById("winner").innerHTML = ("The battle has been fought valiently and" +
+                                                                    "you have prevailed! Congratulations!");
+                }
+
+                
+            
+        
+    </script>
+</head>
+<body>
+    <div id="container">
+        <img src="../images/funny-dragon.jpg" class="center" />
+        <h1 class = "centerText">Michelle's Arcade </h1>
+        <h2 class ="centerText"><em> Battle The Troll!</em></h2>
+    <div class="nav">
+      <div class="flex flex1"><a href="../index.html">Home</a></div>
+      <div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+      <div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+    </div> <!-- end nav -->
+    </div> <!-- end container -->
+        <div id="content">
+            <div id="battle">
+            <div id="item1">Choose Your Weapon:</div>
+            <div id="item2"><a onclick="getWeapon(1);"><img src="../images/rock.jpg"></a></div>
+            <div id="item3"><a onclick="getWeapon(2);"><img src="../images/sword.jpg"></a></div>
+            <div id="item4"><a onclick="getWeapon(3);"><img src="../images/arrow.jpg"></a></div>
+            <div id="item5"><a onclick="getWeapon(4);">Quit</a></div>
+            <div id="item6"><img src="../images/wizard.jpg" /></div>
+            <div id="item7"><img height="150px" src="../images/troll.jpg" /></div>
+            <div id="item8"><span class="style1">Wizard uses: </span></div>
+            <div id="item9"><span class="style1">Troll uses: </span></div>
+            <div id="item10"><span id="playerWeapon" class="style1">Weapon goes here</span></div>
+            <div id="item11"><span id="trollWeapon" class="style1">Weapon goes here</span></div>
+            <div id="item12"><span class="style1">The Winner is: </span></div>
+            <div id="item13"><span id="winner" class="style1">&nbsp;</span></div>
+            <div id="item14"><span class="style1">Wizard points: </span></div>
+            <div id="item15"><span class="style1">Troll points: </span></div>
+            <div id="item16"><span id="heroPts" class="style1">100</span></div>
+            <div id="item17"><span id="trollPts" class="style1">100</span></div>
+            <div id="item18" class="noBorder"><input type="button" id="return" 
+                value="Return to battle instructions" onclick="location.href='greg_battle.html'"; /></div>
+            <div id="item19" class="noBorder"><input type="button" id="start again"
+                value="Play Another Game" onclick="playAgain();">
+            </div><!-- end battle -->
+        </div><!-- end content -->
+    </div> <!-- end container -->
+    <div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+            <a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a>
+    </div> <!-- end footer -->
+		
+    </body>
+</html>

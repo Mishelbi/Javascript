@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Secret Message Encoder</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    function encodeIt()
+    {
+            document.getElementById("message").innerHTML  = ("<h2>&nbsp;</h2>");
+            //initialize variables
+            var msg = prompt("Enter your message", " ");
+            var newmsg = " ";
+            var upCaseCode = 155;
+            var newCode = 0;
+            var lowCaseCode = 219;
+            var specialCode = 3;
+            //the loop encodes each letter in the message string
+            for (j = 0; j < msg.length; j++)
+            {
+                //check for upppercase letters and encode them
+                if ((msg.charCodeAt(j) >= 65) && (msg.charCodeAt(j) <= 90))
+                    {
+                        newCode = (upCaseCode - msg.charCodeAt(j));
+                    }
+                else 
+                //check for lowercase letters and encode them
+                    if ((msg.charCodeAt(j) >= 97) && (msg.charCodeAt(j) <= 122))
+                        {
+                            newCode = (lowCaseCode - msg.charCodeAt(j));
+                        }
+                    else
+                //check for numbers and special characters and encode them
+                        if (((msg.charCodeAt(j) > 90) && (msg.charCodeAt(j) < 97)) || 
+                            (msg.charCodeAt(j) < 65))
+                            {
+                                newCode = (msg.charCodeAt(j) + specialCode);
+                            }
+                //add each encoded character to the new message
+                newmsg = newmsg + " " + String.fromCharCode(newCode);
+            }
+            //display the encoded message on the web page
+            document.getElementById("secret").innerHTML = ("<h2>" + newmsg + "</h2>");
+            //decide if original message should be shown
+            var choice = prompt("Do you want the original message displayed? Yes or No?"," ");
+            if ((choice.charAt(0) == 'y') || (choice.charAt(0) == 'Y'))
+                {
+                    document.getElementById("message").innerHTML = ("<h2>" + msg + "</h2>");
+                }
+    }
+</script>
+</head>
+<body>
+	<div id="container">
+		<img src="../images/funny-dragon.jpg" class="center" />
+		<h1 class = "centerText">Michelle's Arcade </h1>
+		<h2 class ="centerText"><em> Secret Message Encoder!</em></h2>
+        <div class="nav">
+        <div class="flex flex1"><a href="../index.html">Home</a></div>
+        <div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+        <div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+        </div> <!-- end nav -->
+	</div> <!-- end container -->
+    <div id="content">
+        <h2>Write A Message and Encode It</h1>
+        <p><input type="button" id="encode" value="Enter your message" onclick="encodeIt();" /></p>
+        <table cellpadding="2" width = "90%" align = "center" border="1">
+             <tr> <td align="center" id="secret"><p>encoded message</p></td> </tr> 
+             <tr> <td align="center" id="message">&nbsp;</td> </tr> 
+        </table>
+    </div> <!-- end content -->
+    <div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+        <a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a></div>
+    </div> <!-- end footer -->
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Bet The Roll</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+    
+        var playerPts = 0; var computerPts = 0;
+        function roll()
+        {
+            // local variables
+            var playerSum = 0; var computerSum = 0;
+            var die1 = 0; var die2 = 0; var die3 = 0;
+            var die4 = 0;
+            
+            document.getElementById("playerPts").innerHTML = (playerPts);
+            document.getElementById("computerPts").innerHTML = (computerPts);
+            document.getElementById("playerSum").innerHTML = (playerSum);
+            document.getElementById("computerSum").innerHTML = (computerSum);
+            document.getElementById("winner").innerHTML = ("&nbsp;");
+            
+            // load the dice
+            die1 = Math.floor(Math.random() * 6 + 1);
+            die2 = Math.floor(Math.random() * 6 + 1);
+            die3 = Math.floor(Math.random() * 6 + 1);
+            die4 = Math.floor(Math.random() * 6 + 1);
+            playerSum += (die1 + die2);
+            computerSum += (die3 + die4);
+
+            // display the dies and sum
+
+            document.getElementById("die1").innerHTML = ("<img src='../images/"+die1+"Die.bmp'>");
+            document.getElementById("die2").innerHTML = ("<img src='../images/"+die2+"Die.bmp'>");
+            document.getElementById("die3").innerHTML =   ("<img src='../images/"+die3+"Die.bmp'>");
+            document.getElementById("die4").innerHTML = ("<img src='../images/"+die4+"Die.bmp'>");
+            document.getElementById("playerSum").innerHTML = (playerSum);
+            document.getElementById("computerSum").innerHTML = (computerSum);
+            
+            // display the roll's winner
+            getWinner(playerSum, computerSum);
+        }
+    
+    function getWinner(player, computer)
+        {
+            
+            //find the winner of the roll
+            if (player == computer) 
+                {
+                    document.getElementById("winner").innerHTML = ("This round is a tie." +
+                                                              "No points awarded...");
+                }
+            else if (player > computer)
+                {
+                    if (die1 == die2)
+                        {
+                            player *=2;                            
+                        }
+                    playerPts += player; 
+                    document.getElementById("winner").innerHTML = ("You won this roll!"); 
+                    document.getElementById("playerPts").innerHTML = playerPts;
+                }
+            else
+                {
+                    if (die3 == die4)
+                        {
+                            computer *=2;                          
+                        }
+                    computerPts += computer; 
+                    document.getElementById("winner").innerHTML = ("The computer won this roll!"); 
+                    document.getElementById("computerPts").innerHTML = computerPts;
+                }
+        }
+        function getFinalWinner()
+        {
+            if (playerPts == computerPts)
+                {
+                    alert("There is a tie!");
+                }
+            else if (playerPts > computerPts)
+                {
+                    alert("YOU WIN! Congtatulations!");
+                }
+            else
+                {
+                    alert("Computer wins. Try again soon.")
+                }
+            clearTheScreen();
+        }
+        
+        function clearTheScreen()
+        {
+            playerPts = 0; var playerSum = 0; var computerSum = 0;
+            computerPts = 0;
+            document.getElementById("die1").innerHTML = ("&nbsp;");
+            document.getElementById("die2").innerHTML = ("&nbsp;");
+            document.getElementById("playerSum").innerHTML = playerSum;
+            document.getElementById("die3").innerHTML = ("&nbsp;");
+            document.getElementById("die4").innerHTML = ("&nbsp;");
+            document.getElementById("computerSum").innerHTML =computerSum;
+            document.getElementById("playerPts").innerHTML = playerPts;
+            document.getElementById("computerPts").innerHTML = computerPts;
+            document.getElementById("winner").innerHTML = ("&nbsp;");
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="container">
+        <img src="../images/funny-dragon.jpg" class="center" />
+        <h1 class = "centerText">Michelle's Arcade </h1>
+        <h2 class ="centerText"><em> Bet The Roll!</em></h2>
+        <div class="nav">
+        <div class="flex flex1"><a href="../index.html">Home</a></div>
+        <div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+        <div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+        </div> <!-- end nav -->
+    </div> <!-- end container -->        
+    <div id="content">
+        <div id="roll">
+            <div id="playersDice" class="nobdr">Player's Dice:</div>
+            <div id="die1" class="nobdr">&nbsp;</div>
+            <div id="die2" class="nobdr">&nbsp;</div>
+            <div id="item4" class="nobdr">Your die total: <span id="playerSum">&nbsp;</span></div>
+            <div id="computerDice" class="nobdr">Computer's Dice:</div>
+            <div id="die3" class="nobdr">&nbsp;</div>
+            <div id="die4" class="nobdr">&nbsp;</div>
+            <div id="item8" class="nobdr">The Computer's die total: <span id="computerSum">&nbsp;</span></div>
+            <div id="item9" class="nobdr">&nbsp;</div>
+            <div id="item10" class="nobdr">The Winner is:</div>
+            <div id="winner" class="nobdr">&nbsp;</div>
+            <div id="item12" class="nobdr">Player points: </div>
+            <div id="item13" class="nobdr">Computer points: </div></tr>
+            <div id="playerPts" class="nobdr">0</div>
+            <div id="computerPts" class="nobdr">0</div>
+            <div id="item16" class = "nobdr"><input type = "button" id = "roll" value = "Roll!" onclick = "roll();" /></div>
+            <div id="item17" class="nobdr"><input type="button" id="quit" value="Quit" onclick="getFinalWinner();" /></div></tr>
+        </div><!-- end roll -->
+    </div><!-- end content -->
+    <div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+        <a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a></div>
+    </div> <!-- end footer -->
+    </body>
+</html>

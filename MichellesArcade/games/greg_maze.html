@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Michelle's Maze</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">    
+        var wizard = '<img src="../images/wizard.jpg" align="center"/>';
+        var ring = '<img src="../images/oneRing.jpg" align="center"/>';
+        var pitfall1; 
+        var pitfall2;
+        var pitfall3;
+        
+        // setup 2 Dimensional array to hold images and setup table
+        function setup()
+        {
+            cells = new Array([document.getElementById("cell00"),
+                              document.getElementById("cell01"),
+                              document.getElementById("cell02"),
+                              document.getElementById("cell03")],
+                              [document.getElementById("cell10"),
+                              document.getElementById("cell11"),
+                              document.getElementById("cell12"),
+                              document.getElementById("cell13")],
+                              [document.getElementById("cell20"),
+                              document.getElementById("cell21"),
+                              document.getElementById("cell22"),
+                              document.getElementById("cell23")],
+                             [document.getElementById("cell30"),
+                              document.getElementById("cell31"),
+                              document.getElementById("cell32"),
+                              document.getElementById("cell33")]);
+            
+            placeValues(cells);
+            pitfall1 = getPitFalls(pitfall1);
+            pitfall2 = getPitFalls(pitfall2);
+            pitfall3 = getPitFalls(pitfall3);
+            
+            if ((pitfall1 == "0,0" || pitfall1 == "3,3") || (pitfall1 == pitfall2) || (pitfall1 == pitfall3))
+                pitfall1 = getPitFalls(pitfall1);
+            if ((pitfall2 == "0,0" || pitfall2 == "3,3") || (pitfall2 == pitfall1) || (pitfall2 == pitfall3))
+                pitfall2 = getPitFalls(pitfall2);
+            if ((pitfall3 == "0,0" || pitfall3 == "3,3") || (pitfall3 == pitfall1) || (pitfall3 == pitfall2))
+                pitfall3 = getPitFalls(pitfall3);
+            
+            
+            
+                
+                
+            
+        }
+        function getPitFalls(pf)
+        {
+            pf = Math.floor(Math.random() * 4) + "," +  Math.floor(Math.random() * 4);
+            return pf;
+        }
+
+        
+        function placeValues(cells)
+        {
+            cells[0][0].innerHTML = "Gandalf";
+            cells[3][3].innerHTML = ring;
+            
+            // Fill the rest of the array with blue.jpg.
+            for (var i =0; i < 4; i++)
+                {
+                    for (var j = 0; j < 4; j++)
+                        {
+                            if ((i == 0 && j == 0) || (i ==3 && j ==3))
+                                continue;
+                            else
+                                cells[i][j].innerHTML = '<img src="../images/blue.jpg" />';
+                        }
+                }            
+           }
+        
+        
+
+    
+        function doClick(row, col)
+        {
+            var top = row -1;
+            var bottom = row +1;
+            var left = col -1;
+            var right = col +1;
+            var coord = row + "," + col;
+            
+            
+            
+           // test for pitfalls
+            if (coord == pitfall1)
+                { alert("You've encountered a bear! Try another move."); }
+            else if (coord == pitfall2)
+                { alert("You've encountered a fallen tree! Try another move.");}
+            else if (coord == pitfall3)
+                { alert("You've encountered a Balrog! Game Over.");
+                    if (window.prompt("Play Again?", "yes"))
+                    setup();
+                }
+            // test moves
+            else if(top != -1 && cells[top][col].innerHTML == "Gandalf")
+                {swap(cells[row][col], cells[top][col]);}
+            else if(right != 4 && cells[row][right].innerHTML == "Gandalf")
+                {swap(cells[row][col], cells[row][right]);}
+            else if (left != -1 && cells[row][left].innerHTML == "Gandalf")
+                {swap(cells[row][col], cells[row][left]);}
+            else if(bottom != 4 && cells[bottom][col].innerHTML == "Gandalf")
+                {swap(cells[row][col], cells[bottom][col]);}
+
+            else
+                {alert("Illegal move.");}
+		
+		checkWinner();
+        }
+    
+        function swap(firstCell, secondCell)
+        {
+            swapped = true;
+            var temp = "";
+            temp = secondCell.innerHTML;
+            secondCell.innerHTML = firstCell.innerHTML;
+            firstCell.innerHTML = temp;
+        }
+    
+        function checkWinner()
+        {
+            if (cells[3][3].innerHTML == "Gandalf")
+            {
+                alert("Congratulations! You found the One Ring!");
+                if (window.prompt("Play Again?", "yes"))
+                    setup();
+            }
+        }    
+    </script>    
+</head>
+<body onload="setup()">
+    <div id="container">
+        <img src="../images/funny-dragon.jpg" class="center" />
+        <h1 class = "centerText">Michelle's Arcade </h1>
+        <h2 class ="centerText"><em> Play Michelle's Maze!</em></h2>
+        <div class="nav">
+        <div class="flex flex1"><a href="../index.html">Home</a></div>
+        <div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+        <div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+        </div> <!-- end nav -->
+    </div> <!-- end container -->
+    <div id="content">    
+        <p>You can move the wizard into an empty spot by moving up, down,
+        right, or left one space. Diagonal moves are not allowed. The object is
+        to get the wizard to the One Ring. Beware of the pitfalls that may block
+        your way.</p>
+        <table width="60%" align="center">
+        <tr>
+            <td height="60"><span onclick="doClick(0,0)" id="cell00"></span></td>
+            <td><span onclick="doClick(0,1)" id="cell01"></span></td>
+            <td><span onclick="doClick(0,2)" id="cell02"></span></td>
+            <td><span onclick="doClick(0,3)" id="cell03"></span></td>        
+            </tr><tr>
+            <td height="60"><span onclick="doClick(1,0)" id="cell10"></span></td>
+            <td><span onclick="doClick(1,1)" id="cell11"></span></td>
+            <td><span onclick="doClick(1,2)" id="cell12"></span></td>
+            <td><span onclick="doClick(1,3)" id="cell13"></span></td>        
+            </tr><tr>
+            <td height="60"><span onclick="doClick(2,0)" id="cell20"></span></td>
+            <td><span onclick="doClick(2,1)"  id="cell21"></span></td>
+            <td><span onclick="doClick(2,2)" id="cell22"></span></td>
+            <td><span onclick="doClick(2,3)" id="cell23"></span></td>        
+            </tr><tr>
+            <td height="60"><span onclick="doClick(3,0)" id="cell30"></span></td>
+            <td><span onclick="doClick(3,1)" id="cell31"></span></td>
+            <td><span onclick="doClick(3,2)" id="cell32"></span></td>
+            <td><span onclick="doClick(3,3)" id="cell33"></span></td>        
+            </tr>            
+        </table>        
+    </div><!-- end content -->
+    <div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+        <a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a></div>
+    </div> <!-- end footer -->
+</body>
+</html>

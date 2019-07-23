@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Concentration</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+//variables
+	var count = 0;
+	var firstCell = "";
+	var secondCell = "";
+	var firstCellId = "";
+	var secondCellId = "";
+	var turnCount = 0;
+	var matchCount = 0;
+	var picArray = new Array(
+		["<img src='../images/biking.jpg' />","<img src='../images/sword.jpg' />",
+		"<img src='../images/avocado.jpg' />","<img src='../images/drawing.jpg' />"],
+		["<img src='../images/horse.jpg' />","<img src='../images/lawnmower.jpg' />",
+		"<img src='../images/ghost.jpg' />","<img src='../images/wizard.jpg' />"],
+		["<img src='../images/avocado.jpg' />","<img src='../images/ghost.jpg' />",
+		"<img src='../images/horse.jpg' />","<img src='../images/biking.jpg' />"],
+		["<img src='../images/lawnmower.jpg' />","<img src='../images/sword.jpg' />",
+		"<img src='../images/drawing.jpg' />","<img src='../images/wizard.jpg' />"]);
+
+
+	function getImage(x)
+	{
+		n = x.split(".");
+		document.getElementById(x).innerHTML = picArray[n[1]][n[2]];
+		turnCount++;
+			if (turnCount == 1 || turnCount % 2 == 1)
+			{
+				firstCellId = x;
+				firstCell = picArray[n[1]][n[2]];
+			}
+			else
+			{
+				secondCellId = x;
+				secondCell = picArray[n[1]][n[2]];
+				compareThem();
+			}
+	}
+
+	function compareThem()
+	{
+		if (firstCell != secondCell)
+		{
+			if (turnCount < 50)
+				{
+					alert("Try again! You have " + ((50 - turnCount) / 2) + " turns left."); 
+					document.getElementById(firstCellId).innerHTML = "<input type='image' src = '../images/hidden.jpg' onclick = 'getImage(\"" + firstCellId + "\")' />";
+					document.getElementById(secondCellId).innerHTML = "<input type='image' src = '../images/hidden.jpg' onclick = 'getImage(\"" + secondCellId + "\")' />";
+				}
+				else
+				{
+					alert("Game Over! Better try again.")
+					reloadPage();
+				}	
+		}
+		else
+		{
+			matchCount++;
+			if (matchCount > 0 && matchCount < 8)
+				alert("You found a match! Look for more. You have " + ((50-turnCount) / 2) + " turns left.");
+			else
+			{
+				var endIt = document.createElement("H3");
+				var endMessage = document.createTextNode("Congratulations! You won!");
+				endIt.appendChild(endMessage);
+				document.getElementById("the_end").appendChild(endIt);
+				
+				var restartIt = document.createElement("BUTTON");
+				restartIt.setAttribute("onclick","reloadPage();");
+				var restartButton = document.createTextNode("Play Again");
+				restartIt.appendChild(restartButton);
+				document.getElementById("restart").appendChild(restartIt);
+			}
+		}
+	}
+	function reloadPage()
+	{
+		window.location = location.href;
+	}
+</script>
+</head>
+<body>
+	<div id="container">
+		<img src="../images/funny-dragon.jpg" class="center" />
+		<h1 class = "centerText">Michelle's Arcade </h1>
+		<h2 class ="centerText"><em> Play Concentration!</em></h2>
+		<div class="nav">
+		<div class="flex flex1"><a href="../index.html">Home</a></div>
+		<div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+		<div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+		</div> <!-- end nav -->
+	</div> <!-- end container -->
+	<div id="content">
+		<h3>How good is your memory? Find all the matching pictures in 25 moves.</h3>
+		<div id ="pictures">
+		<table align = "center" border = "1">
+			<tr><td colspan = "6">Click on a tile to reveal the picture</td></tr>
+			<tr>
+				<td id = "cell.0.0"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.0.0')" /></td>
+				<td id = "cell.0.1"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.0.1')" /></td>
+				<td id = "cell.0.2"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.0.2')" /></td>
+				<td id = "cell.0.3"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.0.3')" /></td>
+			</tr>
+			<tr>
+				<td id = "cell.1.0"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.1.0')" /></td>
+				<td id = "cell.1.1"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.1.1')" /></td>
+				<td id = "cell.1.2"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.1.2')" /></td>
+				<td id = "cell.1.3"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.1.3')" /></td>
+			</tr>
+			</table><br />
+			<table align = "center" border = "1">
+			<tr>
+				<td id = "cell.2.0"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.2.0')" /></td>
+				<td id = "cell.2.1"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.2.1')" /></td>
+				<td id = "cell.2.2"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.2.2')" /></td>
+				<td id = "cell.2.3"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.2.3')" /></td>
+			</tr>
+			<tr>
+				<td id = "cell.3.0"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.3.0')" /></td>
+				<td id = "cell.3.1"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.3.1')" /></td>
+				<td id = "cell.3.2"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.3.2')" /></td>
+				<td id = "cell.3.3"><input type="image" src = "../images/hidden.jpg" onclick = "getImage('cell.3.3')" /></td>
+			</tr>
+		</table>
+		</div><!-- end pictures -->
+		<div id = "the_end">&nbsp;</div>
+		<div id = "restart" align = "center">&nbsp;</div>
+	</div><!-- end content -->
+	<div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+		<a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a></div>
+	</div> <!-- end footer -->
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Play Boggle!</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="gregBoggle.js"></script>
+	<script type="text/javascript">        
+        compWords = new Array(); notAword = new Array();
+        playWords = new Array();
+        var play = ""; var today;
+        var score = 0; 
+        
+        function start()
+        {
+            var start = new Date();
+            today = start.getTime();
+            boggle();
+        }
+        function displayLetters()
+        {
+            var num = Math.floor(Math.random()*10) +1;
+            compWords = words(num);
+            yourWord = compWords[0];
+            document.getElementById("letters").innerHTML = yourWord;
+        }        
+        function boggle()
+        {
+            play = document.getElementById("words").value;
+            if (play != "Q")
+            {
+                playWords.push(play);
+                displayEntries();
+                document.getElementById("words").value = "";
+                document.getElementById("words").focus();
+            } 
+            else    
+            {
+                document.getElementById("words").value = "";
+                document.getElementById("words").focus();
+                checkWin();
+            }    
+                    
+        }
+        function displayEntries()
+        {
+            document.getElementById("entries").innerHTML = playWords.toString();
+                
+        }
+        
+        function toMinutesAndSeconds(millis)
+        {
+            var minutes = Math.floor(millis/60000);
+            var seconds = ((millis%60000)/1000).toFixed(0);
+            
+            return minutes + ":" + ((seconds < 10 ? '0' : "")+ seconds);
+        }
+        function checkWin()
+        {
+            // check winning score and list bad words
+            var complgth = compWords.length;
+            var playlgth = (playWords.length);
+            var flag; var timePlayed;
+            var endTime = new Date().getTime();
+            var diff = endTime - today;
+            timePlayed = toMinutesAndSeconds(diff);
+            for (var i = 0; i < playlgth; i++)
+                {
+                    flag = 0;
+                    for (var k = 0; k < complgth; k++)
+                        {
+                             if (playWords[i] == compWords[k])
+                                 {
+                                     score= score + 1;
+                                     flag = 1;
+                                 }
+                        }
+                    
+                    if (flag == 0)
+                        notAword.push(playWords[i]);
+                }
+            document.getElementById("result").innerHTML = ("Your score is " +
+                score + ". The following entries " + "are not valid words: <br />" +
+                notAword.toString());
+            document.getElementById("timer").innerHTML = ("Your time: " + timePlayed);
+
+        }    
+    </script>    
+</head>
+<body>
+    <div id="container">
+        <img src="../images/funny-dragon.jpg" class="center" />
+        <h1 class = "centerText">Michelle's Arcade </h1>
+        <h2 class ="centerText"><em> Play Boggle with Tracked Time!</em></h2>
+        <div class="nav">
+        <div class="flex flex1"><a href="../index.html">Home</a></div>
+        <div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+        <div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+        </div> <!-- end nav -->
+    </div> <!-- end container -->
+    <div id="content">
+        <p>The object of the game is to create as many words as
+        you can. Please click the Display letters button and your letters will
+        be shown below. You have 10 possible letter combinations and the time is tracked.
+        When you are ready to begin, enter the word then click the Submit Word button.
+        You may quit at anytime but entering Q and clicking Submit Word button.</p>
+        <p><input type="button" value="Display letters" onclick="displayLetters();" /><br/>
+            <input type="text" id="words">
+            <input type="button" value="Submit Word" onclick="start();" />
+        </p>        
+        <h2><br /><br />Letters you can use:<br /><div id="letters">&nbsp;</div><br /></h2>
+        <h2>Your words so far: <br /><div id="entries">&nbsp;</div><br /></h2>
+        <h2>Results:<br /><div id="result">&nbsp;</div></h2> 
+        <h2>Timer: <br /><div id="timer">&nbsp;</div></h2>
+    </div><!-- end content -->
+    <div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+        <a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a></div>
+    </div> <!-- end footer -->
+</body>
+</html>

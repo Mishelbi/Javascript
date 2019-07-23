@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Tic Tac Toe</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <script>
+    function setColor(x)
+        {
+            var piece = document.getElementById(x).value;
+            if ((piece == "X") || (piece == "x"))
+                {
+                    document.getElementById(x).style.background = "yellow";
+                }
+            else if ((piece == "O") || (piece == "o"))
+                {
+                    document.getElementById(x).style.background = "orange";
+                }
+            else
+                {
+                    var msg = "Please enter either X or O.";
+                    alert(msg);
+                    document.getElementById(x).value = "";
+                    document.getElementById(x).focus();
+                    
+                }
+
+        }
+    function doReset()
+        {
+            for (i =1; i <=9; i++)
+                {
+                    document.getElementById("box" + i).value = "";
+                    document.getElementById("box" + i).style.background = "white";
+                }
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <img src="../images/funny-dragon.jpg" class="center" />
+        <h1 class = "centerText">Michelle's Arcade </h1>
+        <h2 class ="centerText"><em> Tic Tac Toe!</em></h2>
+        <div class="nav">
+        <div class="flex flex1"><a href="../index.html">Home</a></div>
+        <div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+        <div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+        </div> <!-- end nav -->
+    </div> <!-- end container -->
+    <div id="content">
+        <h3><br />Tic Tac Toe</h3>
+        <p>This game is for two players. One player is yellow (X), the other
+            is orange (O). The goal is to get three boxes in a row. (across, 
+            down, or diagonally). When you enter your letter into a box and click
+            OK, the box will change to your color. The game ends when one player
+            wins or there is a tie.</p>
+        <div style="width: 90%; float: left;">
+            <div id="tictactoe">
+                <div id="item1"><input type="text" name="box1" id="box1" tabindex="1" size="6" value="">
+                    <a href="JavaScript:setColor('box1')" tabindex="1"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item2"><input type="text" name="box2" id="box2" tabindex="2" size="6" value="">
+                    <a href="JavaScript:setColor('box2')" tabindex="2"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item3"><input type="text" name="box3" id="box3" tabindex="3" size="6" value="">
+                    <a href="JavaScript:setColor('box3')" tabindex="3"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item4"><input type="text" name="box4" id="box4" tabindex="4" size="6" value="">
+                    <a href="JavaScript:setColor('box4')" tabindex="4"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item5"><input type="text" name="box5" id="box5" tabindex="5" size="6" value="">
+                    <a href="JavaScript:setColor('box5')" tabindex="5"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item6"><input type="text" name="box6" id="box6" tabindex="6" size="6" value="">
+                    <a href="JavaScript:setColor('box6')" tabindex="6"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item7"><input type="text" name="box7" id="box7" tabindex="7" size="6" value="">
+                    <a href="JavaScript:setColor('box7')" tabindex="7"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item8"><input type="text" name="box8" id="box8" tabindex="8" size="6" value="">
+                    <a href="JavaScript:setColor('box8')" tabindex="8"><img src="../images/okButton.gif" class="OK"></a></div>
+                <div id="item9"><input type="text" name="box9" id="box9" tabindex="9" size="6" value="">
+                    <a href="JavaScript:setColor('box9')" tabindex="9"><img src="../images/okButton.gif" class="OK"></a></div>
+            </div><!-- end tictactoe -->
+        
+        </div>
+        <div style="clear: both;"></div><br /><br />
+            <input type="button" value="reset and play again" onclick="doReset()">
+    </div><!-- end content -->
+    <div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+        <a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a></div>
+    </div> <!-- end footer -->
+</body>
+</html>

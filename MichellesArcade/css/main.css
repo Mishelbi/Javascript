@@ -1,0 +1,279 @@
+/* responsive css */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+img {
+    max-width: 100%;
+}
+/* regular css */
+body {
+    background-color: #cc33ff;
+    color: #99ffcc;
+    font-family: Verdana, Arial, sans-serif;
+}
+a:link{
+    color: #990000;
+    font-size: 14px;
+}
+#container { 
+    margin-left: auto;    
+    margin-right: auto;
+    width:80%;
+   }
+
+#content {
+    margin-left: auto;
+    margin-right: auto;
+	width: 78%;
+	background-color: #ecbef8;
+	color: #000040;
+	padding: 10px;
+}
+
+
+#logo {
+ text-align:center;
+ margin: 0;
+ font-family: Geneva, Arial, Helvetica, sans-serif;
+ padding-top: 30px;
+ padding-bottom: 20px;
+
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 50%;
+}
+.centerText{
+    text-align: center;
+}
+.nav{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    color: #88FFFF;
+    font-size: 12px;
+    border: 2px sienna solid;
+}
+.games{
+    width:100%;
+    min-height: 50vh;
+    margin-left: 40px;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    grid-template-rows: repeat(auto-fill, 3fr);
+    grid-gap: 10px;
+    justify-content: center;
+}
+.games a:link{
+    color: #490707;
+}
+#footer {
+    width:100%;
+    font-size: .60em;
+    font-style: italic;
+    text-align: center;
+    border-top: 2px double #000040;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.style1 {font-size: 18px}
+
+/* game specific css */
+#battle {
+    width: 78%;
+    border: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 50px repeat(2, 150px) 150px repeat(2, 50px) 75px 150px repeat(2, 30px);
+    grid-gap: 5px;
+}
+#item1 {
+    grid-column: 1 / span 2;
+    border-bottom: 2px solid purple;
+
+}
+
+#item5, #item4 {
+    border-bottom: 2px solid purple;
+}
+#item12{
+    grid-column: 1 / span 2;
+    grid-row: 7;
+}
+#item13 {
+    grid-column: 1 / span 2;
+    grid-row: 8;
+}
+
+#battleInstructions {
+    width: 85%;
+    border: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 300px);
+    grid-gap: 5px;
+}
+#BIitem1 {
+    grid-column: 1 / span 3;
+}
+#BIitem5 {
+    grid-column: 1 /span 3;
+}
+#twentyone {
+    width: 85%;
+    border: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows:  repeat(11, 1fr);
+    grid-gap: 5px;
+
+}
+#playersCards {
+    grid-row-start: 1;
+    grid-column: 1 / 3;
+}
+#card1 {
+    grid-row-start: 1;
+   grid-column-start: 3;
+}
+#card2 {
+    grid-row-start: 1;
+    grid-column-start: 4;
+}
+#twentyone > #item4 {
+    grid-column:  1 / span 2;
+    grid-row-start: 2;
+}
+#addCard {
+    grid-column: 2 / span 2;
+    grid-row-start: 2;
+}
+#playerSum {
+    grid-column: 1 / span 4;
+    grid-row-start: 3;
+}
+#twentyone > #item7 {
+    grid-column-start: 1;
+    grid-row-start: 4;
+}
+#dealerSum {
+    grid-column-start: 2;
+}
+#twentyone > #item8 {
+    grid-column-start: 1 / span 2;
+    grid-row-start: 5;
+}
+#twentyone > #item9 {
+    grid-row-start: 6;
+    grid-column-start: 1;
+}
+#twentyone > #item10 {
+    grid-row-start: 6;
+    grid-column-start: 2;
+}
+#twentyone > #item11 {
+    grid-row-start: 7;
+    grid-column-start: 1;
+}
+#twentyone > #item12 {
+    grid-row-start: 8;
+    grid-column-start: 1;
+}
+#winner {
+    grid-row-start: 9;
+    grid-column: 1 / span 2;
+}
+#twentyone > #item14 {
+    grid-row-start: 10;
+}
+#twentyone > #item15 {
+    grid-row-start: 10;
+    grid-column-start: 2;
+}
+#playerPts {
+    grid-row-start: 11;
+}
+#dealerPts {
+    grid-row-start: 11;
+    grid-column-start: 2;
+}
+#twentyone > #item18 {
+    grid-row-start: 12;
+}
+#tictactoe {
+    width: 60%;
+    border: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows:  repeat(3, 1fr);
+    grid-gap: 5px;
+}
+#tictactoe > #item1 {
+    grid-column: 1 / 1;
+    border-bottom: none;
+}
+#tictactoe > #item4 {
+    border-bottom: none;
+}
+#tictactoe > #item5 {
+    border-bottom: none;
+}
+#roll {
+    width: 85%;
+    border: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows:  repeat(2, 150px 50px) repeat(8, 25px);
+    grid-gap: 5px;
+}
+#playersDice {
+    grid-column: 1 / span 2;
+}
+#roll > #item4 {
+    grid-column: 1 / span 4;
+}
+#computerDice {
+    grid-column: 1 / span 2;
+}
+#roll > #item8 {
+    grid-column: 1 / span 4;
+}
+#roll > #item9 {
+    grid-column: 1 / span 4;
+}
+#roll > #item10 {
+    grid-column: 1 / span 4;
+    justify-content: center;
+}
+#winner {
+    grid-row-start: 7;
+    grid-column: 1 / span 4;
+    justify-content: center;
+}
+#roll > #item12 {
+    grid-row-start: 8;
+    grid-column: 1 / span 2;
+}
+#roll > #item13 {
+    grid-column: 3 / span 2;
+}
+#playerPts {
+    grid-row-start: 9;
+    grid-column: 1 / span 2;
+}
+#computerPts {
+    grid-column: 3 / span 2;
+}
+#roll > #item16 {
+    grid-column: 1 / 2;
+}
+#roll > #item17 {
+    grid-column: 3 / 4;
+}
+
+

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Michelle's Arcade | Play 21</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var playerPts = 0; var dealerPts = 0;
+        var playerSum = 0; var dealerSum = 0;
+        var card1 = 0; var card2 = 0; var card3 = 0;
+        var card4 = 0; var addCard = 0;
+    
+        function play21()
+        {
+            /*var playerPts = 0; var dealerPts = 0;
+            var playerSum = 0; var dealerSum = 0;
+            var card1 = 0; var card2 = 0; var card3 = 0;
+            var card4 = 0; var addCard = 0;
+            var choice = "y";*/
+            
+            document.getElementById("playerPts").innerHTML = (playerPts);
+            document.getElementById("dealerPts").innerHTML = (dealerPts);
+            document.getElementById("playerSum").innerHTML = (playerSum);
+            document.getElementById("dealerSum").innerHTML = (dealerSum);
+            document.getElementById("winner").innerHTML = ("&nbsp;");
+            
+                    // load the cards
+                    playerSum = 0;                              // clear sum of cards for next hand
+                    dealerSum = 0;
+                    card1 = Math.floor(Math.random() * 10 + 2);
+                    card2 = Math.floor(Math.random() * 10 + 2);
+                    card3 = Math.floor(Math.random() * 10 + 2);
+                    card4 = Math.floor(Math.random() * 10 + 2);
+                    playerSum += (card1 + card2);
+                    dealerSum += (card3 + card4);
+                
+                    // display the cards and sum
+                    
+                    document.getElementById("card1").innerHTML = ("First card " + card1);
+                    document.getElementById("card2").innerHTML = ("Second card " + card2);
+                    document.getElementById("addCard").innerHTML = ("&nbsp;");
+                    document.getElementById("dealerSum").innerHTML = ("&nbsp;");
+                    document.getElementById("playerSum").innerHTML = ("Your cards total: " + playerSum);
+            // display the final winner
+            
+            
+        }
+        function hitMe()
+        {
+            addCard = Math.floor(Math.random() * 10 + 2);
+            playerSum += addCard;
+            document.getElementById("addCard").innerHTML = ("Your new card is: " + addCard);
+            document.getElementById("playerSum").innerHTML = ("Your cards total: " + playerSum);   
+        }
+        function getWinner()
+        {
+            document.getElementById("dealerSum").innerHTML = (dealerSum);
+
+            //find the winner of the hand
+            if (((playerSum > 21)&&(dealerSum > 21)) || (playerSum == dealerSum))
+                {
+                    document.getElementById("winner").innerHTML = ("This round is a tie." +
+                                                              "No points awarded...");
+                }
+            else if ((playerSum < 22 && (playerSum > dealerSum)) || (dealerSum>21))
+                {
+                    document.getElementById("winner").innerHTML = ("You won this hand!");
+                    playerPts += playerSum;
+                    document.getElementById("playerPts").innerHTML = (playerPts);
+                    document.getElementById("dealerPts").innerHTML = (dealerPts);
+                }
+            else if ((dealerSum < 22 && (dealerSum > playerSum)) || (playerSum > 21))
+                {
+                    document.getElementById("winner").innerHTML = ("The dealer won this hand.");
+                    dealerPts += dealerSum;
+                    document.getElementById("playerPts").innerHTML = (playerPts);
+                    document.getElementById("dealerPts").innerHTML = (dealerPts);
+                }
+        }
+        function newHand()
+        {
+            if (playerPts >= 200)
+                document.getElementById("winner").innerHTML = ("You are the winner! Congratulations!");
+            else if (dealerPts >= 200)
+                document.getElementById("winner").innerHTML = ("Good try but the dealer has won. Try again soon!");
+            else
+                play21();
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <img src="../images/funny-dragon.jpg" class="center" />
+        <h1 class = "centerText">Michelle's Arcade </h1>
+        <h2 class ="centerText"><em> Play 21!</em></h2>
+        <div class="nav">
+        <div class="flex flex1"><a href="../index.html">Home</a></div>
+        <div class="flex flex2"><a href="../assets/about.html">About Michelle</a></div>
+        <div class="flex flex3"><a href="../assets/play_games.html">Play a Game</a></div>
+        </div> <!-- end nav -->
+    </div> <!-- end container -->        
+    <div id="content">
+        <div id="twentyone">
+            <div id="playersCards">Player cards:</div>
+            <div id="card1">&nbsp;</div>
+            <div id="card2">&nbsp;</div>
+            <div id="item4">Additional card:</div>
+            <div id="addCard">&nbsp;</div>
+            <div id="playerSum">Your cards total:</div>
+            <div i="item7">Dealers Cards total:</div>
+            <div id="dealerSum">&nbsp;</div>
+            <div id="item9" ><input type="button" id="hitMe" value="Hit Me!" onclick="hitMe()"; /></div>
+            <div id="item10"><input type="button" id="stay" value="Stay" onclick="getWinner()"; /></div>
+            <div id="item11"><input type="button" id="nextHand" value="Next Hand" onclick="newHand()"; /></div>
+            <div id="item12">The Winner is: </div>
+            <div id="winner">&nbsp;</div>
+            <div id="item14">Player points: </div>
+            <div id="item15">Dealer points: </div>
+            <div id="playerPts">0</div>
+            <div id="dealerPts">0</div>
+            <div id="item18"><input type = "button" id = "play" value = "Lets Play!" onclick = "play21()"; /></div>
+        </div><!-- end twentyone -->
+    </div><!-- end content -->
+    <div id="footer">Copyright &copy; 2018 Michelle's Arcade<br />
+        <a href="mailto:dementeddwarf@gmail.com">dementeddwarf@gmail.com</a></div>
+    </div> <!-- end footer -->
+    </body>
+</html>

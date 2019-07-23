@@ -1,0 +1,159 @@
+/* Color Palette
+shades of purple
+#E4B7E5, 228, 183, 229, #B299C0, 178, 153, 192,  #7E5A9B, 126, 90, 155,
+#63458A, 99, 69, 138, #9A48D0, 154, 72, 208
+---------------------------------*/
+
+/* Global styles
+--------------------------------*/
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
+h1, h2 {
+  font-family: 'Indie Flower', cursive;
+  font-weight: 400;
+}
+h1 {
+  font-size: 70px;
+}
+h2 {
+  font-size: 35px;
+  margin-top: 0;
+}
+h3 {
+  margin: 0;
+}
+a {
+  color: red;
+}
+a:hover {
+  text-decoration: none;
+}
+.content-wrap {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 60px 50px;
+  overflow: auto;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.button {
+  text-decoration: none;
+  background: red;
+  color: white;
+  padding: 10px;
+  display: inline-block;
+}
+
+/* Header and footer
+--------------------------------*/
+header, footer {
+  background: #63458A;
+  color: #E4B7E5;
+}
+/* header */
+header {
+  padding-top: 50px;
+  position: relative;
+}
+header h1, header h2 {
+  color: #F1DEDE;
+  margin: 0;
+
+}
+.profile-img {
+  border-radius: 50%;
+}
+.download {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+/* footer */
+footer {
+  text-align: center;
+}
+.content-wrap a {
+  display: inline-block;
+  padding: 20px;
+  font-size: 40px;
+}
+/* contact info */
+.contact a {
+  padding: 10px;
+  display: inline-block;
+}
+/* navigation */
+nav {
+  text-align: center;
+  background: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+nav a {
+  display: inline-block;
+  padding: 15px 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+
+
+/* Experience
+--------------------------------*/
+.experience {
+  background: #E4B7E5;
+}
+h3 ~ p {
+  margin: 0;
+
+}
+.job-description {
+  margin-bottom: 20px;
+}
+.job-description p:first-of-type {
+  margin-top: 0;
+}
+
+
+/* Education
+--------------------------------*/
+.education {
+  background: linear-gradient(rgba(178, 153, 192, 0.9),
+                 rgba(178, 153, 192, 0.8)),
+                 url(../images/volkan-olmez-73767.jpg) no-repeat fixed;
+  }
+p + h3 {
+  margin-top: 30px;
+}
+/*Media queries
+-------------------------------*/
+@media (min-width: 900px) {
+  .col-narrow {
+    width: 30%;
+    float: left;
+  }
+  .col-wide {
+    width: 70%;
+    float: left;
+    padding-left: 20px;
+  }
+}
+@media (max-width: 899px) {
+  header {
+    text-align: center;
+  }
+  .profile-img {
+    width: 180px;
+  }
+}
